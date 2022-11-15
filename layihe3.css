@@ -65,3 +65,8 @@
     border: 1px solid #E5E5E5;
     padding: 8px 19px 8px 19px;
 }
+
+.active{
+    background-color: #833AE0;
+    color: white;
+}
