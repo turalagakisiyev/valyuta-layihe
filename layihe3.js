@@ -12,6 +12,20 @@ const gbp2 = document.getElementById('gbp2')
 let input2 = document.getElementById('input2')
 let p2 = document.getElementById('p2')
 
+let list = document.getElementById('list')
+const btn = document.querySelector('.btn')
+
+btn.addEventListener('click', () => {
+    if (list.style.display === "block") {
+        list.style.display = "none"
+    } else {
+        list.style.display = "block"
+    }
+
+})
+
+
+
 rub1.addEventListener('click', changeActive)
 usd1.addEventListener('click', changeActive)
 eur1.addEventListener('click', changeActive)
@@ -21,6 +35,30 @@ rub2.addEventListener('click', changeActive)
 usd2.addEventListener('click', changeActive)
 eur2.addEventListener('click', changeActive)
 gbp2.addEventListener('click', changeActive)
+
+
+
+fetch('https://api.exchangerate.host/latest?base=RUB&symbols=USD')
+    .then(res => res.json())
+    .then((data) => {
+        input1.value = 50000
+        p1.innerText = `1 RUB = ${data.rates.USD} USD`
+        input2.value = input1.value * data.rates.USD
+    })
+    .catch(error => {
+        error = "Произошла ошибка"
+        alert(error);
+    })
+
+fetch('https://api.exchangerate.host/latest?base=USD&symbols=RUB')
+    .then(res => res.json())
+    .then((data) => {
+        p2.innerText = `1 USD = ${data.rates.RUB} RUB`
+    })
+    .catch(error => {
+        error = "Произошла ошибка"
+        alert(error);
+    })
 
 
 function changeActive(e) {
@@ -304,7 +342,7 @@ function changeActive(e) {
                 error = "Произошла ошибка"
                 alert(error);
             })
-            
+
     } if (gbp1.classList.contains("active") && usd2.classList.contains("active")) {
 
         fetch('https://api.exchangerate.host/latest?base=GBP&symbols=USD')
@@ -354,6 +392,9 @@ function changeActive(e) {
     }
 
 }
+
+
+
 
 
 
