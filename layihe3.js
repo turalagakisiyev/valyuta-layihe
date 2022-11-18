@@ -36,6 +36,8 @@ usd2.addEventListener('click', changeActive)
 eur2.addEventListener('click', changeActive)
 gbp2.addEventListener('click', changeActive)
 
+input1.addEventListener('keyup',changeActive)
+
 
 
 fetch('https://api.exchangerate.host/latest?base=RUB&symbols=USD')
